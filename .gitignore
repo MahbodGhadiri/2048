@@ -1,0 +1,5 @@
+*.o
+Makefile
+.qmake.stash
+2048
+.vscode
