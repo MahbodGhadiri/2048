@@ -3,3 +3,5 @@ Makefile
 .qmake.stash
 2048
 .vscode
+moc_predefs.h
+moc_qtile.cpp
