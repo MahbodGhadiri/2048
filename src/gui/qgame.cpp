@@ -1,4 +1,4 @@
-#include "grid.h"
+#include "qgame.h"
 #include <QPushButton>
 #include <QPainter>
 #include <QVBoxLayout>
@@ -9,7 +9,8 @@
 #include <QWidget>
 #include <QKeyEvent>
 #include <QObject>
-Grid::Grid(QWidget* parent){
+
+QGame::QGame(QWidget* parent){
     width = 600;
     height = 600;
     resize(width,height);
@@ -31,7 +32,7 @@ Grid::Grid(QWidget* parent){
     connect(gameover.getResetBtn(), SIGNAL(clicked()), this, SLOT(restart()));
 }
 
-void Grid::keyPressEvent(QKeyEvent *event)
+void QGame::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()){
     case Qt::Key_Up:
@@ -69,7 +70,7 @@ void Grid::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Grid::render(){
+void QGame::render(){
     boardLayout = new QGridLayout();
     for (int i = 0; i < 4; ++i) {
         for (int j = 0; j < 4; ++j) {
@@ -83,7 +84,7 @@ void Grid::render(){
     mainLayout->insertLayout(0, boardLayout);
 }
 
-void Grid::restart() {
+void QGame::restart() {
     game->restart();
     gameover.hide();
     render();

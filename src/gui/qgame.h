@@ -9,10 +9,10 @@
 #include <QObject>
 #include "qtile.h"
 #include "qgameover.h"
-class Grid: public QWidget{
+class QGame: public QWidget{
     Q_OBJECT
     public:
-        explicit Grid(QWidget *parent = 0);
+        explicit QGame(QWidget *parent = 0);
         int width;
         int height;
         

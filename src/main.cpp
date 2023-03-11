@@ -1,11 +1,11 @@
 #include <QApplication>
 #include <QPushButton>
-#include "gui/grid.h"
+#include "gui/qgame.h"
 #include <iostream>
 int main(int argc, char **argv)
 {
     QApplication app (argc, argv);
-    Grid grid;
-    grid.show();
+    QGame qgame;
+    qgame.show();
     return app.exec();
 }
