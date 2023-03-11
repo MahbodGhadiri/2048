@@ -27,6 +27,8 @@ QGameOver::QGameOver(QWidget *parent) : QWidget(parent) {
     layout->insertWidget(1, scoreLabel, 0, Qt::AlignCenter);
     // add reset button to window
     layout->insertWidget(2,reset,0,Qt::AlignCenter);
+    // stay on top
+    setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
 void QGameOver::setScore(int gameScore) {
