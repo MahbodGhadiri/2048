@@ -8,6 +8,7 @@
 #include "qtile.h"
 #include <QWidget>
 #include <QKeyEvent>
+#include <QObject>
 Grid::Grid(QWidget* parent){
     width = 600;
     height = 600;
@@ -27,6 +28,7 @@ Grid::Grid(QWidget* parent){
         }
     }
     render();
+    connect(gameover.getResetBtn(), SIGNAL(clicked()), this, SLOT(restart()));
 }
 
 void Grid::keyPressEvent(QKeyEvent *event)
@@ -58,6 +60,13 @@ void Grid::keyPressEvent(QKeyEvent *event)
         break;
     }
     render();
+
+    // check if game ended after this move
+    // if so, show game over widget   
+    if(game->isGameOver()){
+        gameover.setScore(game->getScore());
+        gameover.show();
+    }
 }
 
 void Grid::render(){
@@ -72,5 +81,11 @@ void Grid::render(){
     }
 
     mainLayout->insertLayout(0, boardLayout);
+}
+
+void Grid::restart() {
+    game->restart();
+    gameover.hide();
+    render();
 }
 
