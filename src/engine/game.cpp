@@ -145,6 +145,7 @@ void Game::merge(int i1, int j1, int i2, int j2){
 }
 
 void Game::generateTile(){
+    score += 2;
     std::vector<std::pair<int, int>> freeSpaces(freeSpace);
     int k = 0;
     for(int i = 0; i < SIZE; i++){
@@ -166,7 +167,7 @@ void Game::generateTile(){
         freeSpace --;
     }
     if(freeSpace == 0 && hasGameEnded()) {
-        endGame();
+        gameover = true;
     }
 }
 
@@ -183,6 +184,22 @@ bool Game::hasGameEnded(){
     return true;
 }
 
-void Game::endGame(){
-    throw "game has ended";
+bool Game::isGameOver() {
+    return gameover;
+} 
+
+int Game::getScore() {
+    return score;
+}
+
+void Game::restart(){
+    score = 0;
+    freeSpace = SIZE * SIZE;
+    gameover = false;
+    for( int i = 0; i < SIZE; i++ ){
+        for( int j = 0; j < SIZE; j++){
+            board[i][j] = nullptr;
+        }
+    }
+    generateTile();
 }

@@ -9,7 +9,7 @@ class Game
 {
     private:
         std::vector<std::vector<Tile*>> board;
-        bool isOver = false;
+        bool gameover = false;
         int score = 0;
         int freeSpace = SIZE * SIZE;
     public:
@@ -30,7 +30,9 @@ class Game
             RIGHT = 3
         };
         bool hasGameEnded();
-        void endGame();
+        bool isGameOver();
+        int getScore();
+        void restart();
 };
 
 
