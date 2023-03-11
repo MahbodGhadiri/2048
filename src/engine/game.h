@@ -29,6 +29,8 @@ class Game
             LEFT = 2,
             RIGHT = 3
         };
+        bool hasGameEnded();
+        void endGame();
 };
 
 

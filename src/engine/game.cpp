@@ -151,14 +151,38 @@ void Game::generateTile(){
         for(int j = 0; j < SIZE; j++){
             if(board[i][j] == nullptr){
                 freeSpaces[k] = std::pair<int, int>(i,j);
-                //std::cout<< freeSpaces[k].first << "  " << freeSpaces[k].second << std::endl;
-                k++;
+            k++;
             }
         }
     }
-    int index = rand() % (freeSpace-1);
-    std::pair<int, int> dest = freeSpaces[index];
-    //std::cout<< dest.first << "  " << dest.second << std::endl;
-    board[dest.first][dest.second] = new Tile();
-    freeSpace --;
+    if(freeSpace==1){
+        board[freeSpaces[0].first][freeSpaces[0].second] = new Tile();
+        freeSpace --;
+    }
+    else if(freeSpace > 1) {
+        int index = rand() % (freeSpace-1);
+        std::pair<int, int> dest = freeSpaces[index];
+        board[dest.first][dest.second] = new Tile();
+        freeSpace --;
+    }
+    if(freeSpace == 0 && hasGameEnded()) {
+        endGame();
+    }
+}
+
+bool Game::hasGameEnded(){
+    for(int i = 0; i < SIZE - 1; i++){
+        for(int j = 0; j < SIZE - 1; j++){
+            if( board[i][j]->getValue() == board[i][j+1]->getValue() ||
+                board[i][j]->getValue() == board[i+1][j]->getValue()
+            ){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+void Game::endGame(){
+    throw "game has ended";
 }
